@@ -151,9 +151,8 @@ function updateUser(req, res) {
 function uploadImage(req, res) {
     var userId = req.params.id;
     var file_name = "no subido...";
-    console.log(req.files)
-    //Revisar cuando falle objeto files vacio!!!!!!!
-    if (req.files) {
+    //Ya funciona no lo toques xd!!!!!!!
+    if (Object.keys(req.files).length!==0) {
         var file_path = req.files.image.path;
         var file_split = file_path.split("/");
         var file_name = file_split[2];
