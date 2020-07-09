@@ -8,7 +8,8 @@ var BookSchema = Schema({
     description: String,
     year: Number,
     image: String,
-    editorial: {type: Schema.ObjectId, ref: 'Editorial'},
+    reference:Number,
+    publisher: {type: Schema.ObjectId, ref: 'Publisher'},
     author: {type: Schema.ObjectId, ref: 'Author'}
 })
 
