@@ -7,6 +7,7 @@ var AuthorSchema = Schema({
     name:String,
     surname:String,
     country:String,
+    role: String
 })
 
 module.exports = mongoose.model('Author', AuthorSchema)

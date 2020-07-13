@@ -2,9 +2,10 @@
 //modulos
 var bcrypt = require("bcrypt-nodejs")
 var fs = require("fs")
+var path = require("path")
 //modelos
 var User = require("../models/user")
-//servicio jwt
+//servicio jwt 
 var jwt = require("../services/jwt")
 //acciones
 function pruebas(req, res) {
@@ -151,7 +152,6 @@ function updateUser(req, res) {
 function uploadImage(req, res) {
     var userId = req.params.id;
     var file_name = "no subido...";
-    //Ya funciona no lo toques xd!!!!!!!
     if (Object.keys(req.files).length!==0) {
         var file_path = req.files.image.path;
         var file_split = file_path.split("/");
@@ -198,9 +198,7 @@ function uploadImage(req, res) {
                     });
                 }
             })
-            return res.status(200).send({
-                message: "Extension no valida"
-            });
+            
         }
     } else {
         return res.status(200).send({
@@ -208,10 +206,50 @@ function uploadImage(req, res) {
         });
     }
 }
+
+function getImageFile(req, res) {
+    var imageFile = req.params.imageFile;
+    var path_file = './uploads/users/'+imageFile;
+    
+    fs.exists(path_file, function(exists) {
+        if(exists){
+            res.sendFile(path.resolve(path_file));
+        } else {
+            res.status(404).send({
+                message: "La imagen no existe"
+            });
+        }
+    });
+}
+
+function getAuthors(req, res) {
+    User.find({
+        role:'ROLE_AUTHOR'
+    }).exec((err, users) => {
+        if(err) {
+            res.status(500).send({
+                message: "Error en la petición"
+            });
+        } else {
+            if(!users) {
+                res.status(404).send({
+                    message: "No hay autores"
+                });
+            }else {
+                res.status(200).send({
+                    users
+                });
+            }
+        }
+    })
+}
+
 module.exports = {
     pruebas,
     saveUser,
     login,
     updateUser,
-    uploadImage
+    uploadImage,
+    getImageFile,
+    getAuthors
 }
