@@ -5,10 +5,10 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-//cargar rutas
+//Cargar rutas
 var user_routes = require("./routes/user");
 var book_routes = require("./routes/book");
-//middelwares de body-parser
+//Middelwares de body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
