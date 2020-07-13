@@ -4,6 +4,7 @@ var express = require("express");
 var BookController = require("../controllers/book");
 var api = express.Router();
 var md_auth = require("../middlewares/authenticated");
+//Middleware seguridad que requiere Rol de Author
 var md_author_admin = require("../middlewares/isAuthor");
 
 //Libreria para manejo de archivos multimedia
