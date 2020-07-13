@@ -94,7 +94,7 @@ function login(req, res) {
                         //Comprobar y generar el token
                         if (params.getToken) {
                             //devolver el token
-                            res.status(200).send({
+                            return res.status(200).send({
                                 token: jwt.createToken(user)
                             })
                         }

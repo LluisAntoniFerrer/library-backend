@@ -9,8 +9,8 @@ var BookSchema = Schema({
     year: Number,
     image: String,
     reference:Number,
-    publisher: {type: Schema.ObjectId, ref: 'Publisher'},
-    author: {type: Schema.ObjectId, ref: 'Author'}
+    // publisher: {type: Schema.ObjectId, ref: 'Publisher'},
+    user_author: {type: Schema.ObjectId, ref: 'User'}
 })
 
 module.exports = mongoose.model('Book', BookSchema)
